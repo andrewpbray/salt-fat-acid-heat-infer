@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Salt, Fat, Acid, Heat</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andrew Bray" />
+    <link href="libs/remark-css-0.0.1/fc.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/fc-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="reed.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Salt, Fat, Acid, Heat
+## An Alternative to Cookbook Statistics
+### Andrew Bray
+### May 30th, 2019
+
+---
+
+
+
+
+# Agenda 
+
+## I. Cookbook Statistics
+## II. An Alternative to a Cookbook
+## III. Elements of Inference
+## IV. An Alternative to Cookbook Statistics
+
+---
+class: center, middle
+
+# I. Cookbook Statistics
+
+---
+
+# An old book
+
+&lt;img src="img/fisher-0.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# An old book
+
+&lt;img src="img/fisher-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# An old book
+
+&lt;img src="img/fisher-2.png" width="500" style="display: block; margin: auto;" /&gt;
+
+---
+
+# An old book
+
+&lt;img src="img/fisher-3.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# A new book
+
+&lt;img src="img/triola-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# A new book
+
+&lt;img src="img/triola-2.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# A new book
+
+&lt;img src="img/triola-3.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# A new book
+
+&lt;img src="img/triola-4.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# A new book
+
+&lt;img src="img/triola-5.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# A new book
+
+&lt;img src="img/triola-6.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Old vs New
+
+&lt;img src="img/old-to-new.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+# A self-identified cookbook!
+
+&lt;img src="img/graphics-0.png" width="400" style="display: block; margin: auto;" /&gt;
+
+---
+
+# A self-identified cookbook!
+
+&lt;img src="img/graphics-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# A self-identified cookbook!
+
+&lt;img src="img/graphics-2.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+class: center, middle
+
+# II. An Alternative to a Cookbook
+
+---
+
+# Salt, Fat, Acid, Heat
+
+&lt;img src="img/sfah-book.jpg" width="550" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The Elements of Cooking
+
+&lt;img src="img/toc.JPG" width="500" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The Elements of Cooking
+
+&gt; Liberated from recipes and precise shopping lists, you'll feel comfortable buying what looks best at the farmer's market or butcher's counter, confident in your ability to transform it into a balanced meal. You'll be better equipped to trust your own palate, to make substitutions in recipes, and cook with what's on hand. This book will change the way you *think* about cooking and eating, and help you find your bearings in the kitchen, with any ingredients, while cooking any meal. You'll start using recipes, including the ones in this book, like professional cooks do - for the inspiration, context, and general guidance they offer, rather than by following them to the letter.
+
+-from the Introduction
+
+---
+
+# A Functional Syntax for Cooking
+
+--
+
+
+```r
+library(saltfatacidheat)
+# someone please actually write this package
+```
+
+
+---
+
+# Principled cooking
+
+--
+
+.pull-left[
+
+```r
+chicken %&gt;%
+  salt("kosher", time = -12) %&gt;%
+  acid("buttermilk", time = -12) %&gt;%
+  fat("vegetable oil") %&gt;%
+  heat(375, time = .66)
+```
+
+```r
+&gt; southern_fried_chicken
+```
+]
+
+--
+
+.pull-right[
+
+```r
+chicken %&gt;%
+  salt("kosher", time = -12) %&gt;%
+* acid("lemon juice", time = -1) %&gt;%
+* fat("olive oil", time = -1) %&gt;%
+* heat(450, time = 1)
+```
+
+```r
+&gt; roasted_chicken
+```
+]
+
+--
+
+### Themes
+
+--
+
+1. Consolidate shared principles into verbs/functions
+
+--
+
+2. Specify details through arguments
+
+---
+
+# Principled cooking, cont
+
+--
+
+.pull-left[
+
+```r
+chicken %&gt;%
+  filter(part == "wing") %&gt;%
+  salt("kosher", time = -12) %&gt;%
+  fat("vegetable oil") %&gt;%
+  heat(350, time = .1) %&gt;%
+  acid("hot sauce") %&gt;%
+  fat("blue cheese dressing")
+```
+
+```r
+&gt; buffalo_wings
+```
+]
+
+--
+
+.pull-right[
+
+```r
+chicken %&gt;%
+  filter(part == "wing") %&gt;%
+  salt("kosher", time = -12) %&gt;%
+* fat("blue cheese dressing") %&gt;%
+  heat(350, time = .1) %&gt;%
+  acid("hot sauce") %&gt;%
+* fat("vegetable oil")
+```
+
+```r
+&gt; warning: may cause GI distress
+```
+]
+
+--
+
+### Themes
+
+1. Consolidate shared principles into verbs/functions
+
+2. Specify details through arguments
+
+--
+
+3. Verbs can be repeated and nested
+
+--
+
+4. Order matters
+
+--
+
+5. Most combinations should *work*, but no guarantee on them working *well*.
+
+---
+
+# What I love about this book
+
+--
+
+- Memorize 4 concepts instead of many recipes
+- Encourages experimentation and improvization
+- Enables creativity
+- Learning the links between dishes is satisfying
+
+--
+
+&lt;img src="img/salad-matrix.JPG" width="450" style="display: block; margin: auto;" /&gt;
+
+---
+class: center, middle
+
+# III. Elements of Inference
+
+---
+
+# Elements of Inference
+
+&lt;img src="img/only-one.001.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Elements of Inference
+
+&lt;img src="img/only-one.002.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Elements of Inference
+
+&lt;img src="img/only-one.003.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Elements of Inference
+
+&lt;img src="img/only-one.004.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Elements of Inference
+
+&lt;img src="img/only-one.005.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Elements of Inference
+
+&lt;img src="img/only-one.006.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Elements of Inference
+
+&lt;img src="img/only-one.007.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Elements of Inference
+
+&lt;img src="img/only-one.008.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Elements of Inference
+
+&lt;img src="img/only-one.009.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Elements of Inference
+
+&lt;img src="img/only-one.010.png" width="600" style="display: block; margin: auto;" /&gt;
+
+--
+
+
+```r
+specify() %&gt;% hypothesize() %&gt;% generate() %&gt;% calculate() %&gt;% visualize()
+```
+
+---
+class: center, middle
+
+# IV. An Alternative to Cookbook Statistics
+
+&lt;img src="img/infer_gnome.png" width="200" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+
+# General Social Survey
+
+
+```r
+gss
+```
+
+```
+## # A tibble: 149 x 6
+##     year age   happy   cappun space       party
+##    &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;  &lt;fct&gt;       &lt;fct&gt;
+##  1  2016 61    HAPPY   FAVOR  TOO LITTLE  Ind  
+##  2  2016 35    UNHAPPY OPPOSE ABOUT RIGHT Ind  
+##  3  2016 21    UNHAPPY OPPOSE ABOUT RIGHT Dem  
+##  4  2016 22    HAPPY   OPPOSE TOO LITTLE  Ind  
+##  5  2016 32    UNHAPPY OPPOSE TOO MUCH    Ind  
+##  6  2016 41    HAPPY   OPPOSE TOO LITTLE  Ind  
+##  7  2016 25    UNHAPPY OPPOSE ABOUT RIGHT Ind  
+##  8  2016 53    HAPPY   OPPOSE ABOUT RIGHT Dem  
+##  9  2016 41    HAPPY   OPPOSE TOO LITTLE  Dem  
+## 10  2016 67    HAPPY   FAVOR  TOO LITTLE  Ind  
+## # … with 139 more rows
+```
+
+---
+
+# Test of independence
+
+
+```r
+gss %&gt;%
+* specify(space ~ party)
+```
+--
+
+```
+## Response: space (factor)
+## Explanatory: party (factor)
+## # A tibble: 149 x 2
+##    space       party
+##    &lt;fct&gt;       &lt;fct&gt;
+##  1 TOO LITTLE  Ind  
+##  2 ABOUT RIGHT Ind  
+##  3 ABOUT RIGHT Dem  
+##  4 TOO LITTLE  Ind  
+##  5 TOO MUCH    Ind  
+##  6 TOO LITTLE  Ind  
+##  7 ABOUT RIGHT Ind  
+##  8 ABOUT RIGHT Dem  
+##  9 TOO LITTLE  Dem  
+## 10 TOO LITTLE  Ind  
+## # … with 139 more rows
+```
+
+---
+
+# Test of independence
+
+
+```r
+gss %&gt;%
+  specify(space ~ party) %&gt;%
+* hypothesize(null = "independence")
+```
+--
+
+```
+## Response: space (factor)
+## Explanatory: party (factor)
+## Null Hypothesis: independence
+## # A tibble: 149 x 2
+##    space       party
+##    &lt;fct&gt;       &lt;fct&gt;
+##  1 TOO LITTLE  Ind  
+##  2 ABOUT RIGHT Ind  
+##  3 ABOUT RIGHT Dem  
+##  4 TOO LITTLE  Ind  
+##  5 TOO MUCH    Ind  
+##  6 TOO LITTLE  Ind  
+##  7 ABOUT RIGHT Ind  
+##  8 ABOUT RIGHT Dem  
+##  9 TOO LITTLE  Dem  
+## 10 TOO LITTLE  Ind  
+## # … with 139 more rows
+```
+
+---
+
+# Test of independence
+
+
+```r
+gss %&gt;%
+  specify(space ~ party) %&gt;%
+  hypothesize(null = "independence") %&gt;%
+* generate(reps = 500, type = "permute")
+```
+--
+
+```
+## Response: space (factor)
+## Explanatory: party (factor)
+## Null Hypothesis: independence
+## # A tibble: 74,500 x 3
+## # Groups:   replicate [500]
+##    space       party replicate
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;
+##  1 TOO LITTLE  Ind           1
+##  2 TOO MUCH    Ind           1
+##  3 TOO LITTLE  Dem           1
+##  4 TOO MUCH    Ind           1
+##  5 TOO MUCH    Ind           1
+##  6 ABOUT RIGHT Ind           1
+##  7 ABOUT RIGHT Ind           1
+##  8 ABOUT RIGHT Dem           1
+##  9 ABOUT RIGHT Dem           1
+## 10 TOO LITTLE  Ind           1
+## # … with 74,490 more rows
+```
+
+---
+
+# Test of independence
+
+
+```r
+gss %&gt;%
+  specify(space ~ party) %&gt;%
+  hypothesize(null = "independence") %&gt;%
+  generate(reps = 500, type = "permute") %&gt;%
+* calculate(stat = "Chisq")
+```
+--
+
+```
+## # A tibble: 500 x 2
+##    replicate  stat
+##        &lt;int&gt; &lt;dbl&gt;
+##  1         1  3.12
+##  2         2  3.55
+##  3         3  4.74
+##  4         4  2.90
+##  5         5  2.90
+##  6         6  1.88
+##  7         7  1.80
+##  8         8  3.27
+##  9         9  3.15
+## 10        10 10.0 
+## # … with 490 more rows
+```
+
+---
+
+# Test of independence
+
+
+```r
+gss %&gt;%
+  specify(space ~ party) %&gt;%
+  hypothesize(null = "independence") %&gt;%
+  generate(reps = 500, type = "permute") %&gt;%
+  calculate(stat = "Chisq") %&gt;%
+* visualize()
+```
+--
+![](infer-sdss_files/figure-html/part5-out-1.png)&lt;!-- --&gt;
+
+---
+
+# Test of independence
+
+
+```r
+gss %&gt;%
+  specify(space ~ party) %&gt;%
+  hypothesize(null = "independence") %&gt;%
+  generate(reps = 500, type = "permute") %&gt;%
+  calculate(stat = "Chisq") %&gt;%
+* visualize() + shade_p_value(obs_stat = chi_obs, direction = "greater")
+```
+--
+![](infer-sdss_files/figure-html/part6-out-1.png)&lt;!-- --&gt;
+
+---
+
+# Test of independence
+
+
+```r
+gss %&gt;%
+  specify(space ~ party) %&gt;%
+  hypothesize(null = "independence") %&gt;%
+  generate(reps = 500, type = "permute") %&gt;%
+  calculate(stat = "Chisq") %&gt;% 
+* get_p_value(obs_stat = chi_obs, direction = "greater")
+```
+--
+
+```
+## # A tibble: 1 x 1
+##   p_value
+##     &lt;dbl&gt;
+## 1   0.862
+```
+
+---
+
+# Test of independence via approximation
+
+--
+
+
+```r
+gss %&gt;%
+  specify(space ~ party) %&gt;%
+  hypothesize(null = "independence") %&gt;%
+* #generate(reps = 500, type = "permute") %&gt;%
+* #calculate(stat = "Chisq") %&gt;%
+* visualize(method = "theoretical")
+```
+--
+![](infer-sdss_files/figure-html/part8-out-1.png)&lt;!-- --&gt;
+
+---
+
+# Test of independence two ways
+
+
+```r
+gss %&gt;%
+  specify(space ~ party) %&gt;%
+  hypothesize(null = "independence") %&gt;%
+  generate(reps = 500, type = "permute") %&gt;%
+  calculate(stat = "Chisq") %&gt;%
+* visualize(method = "both")
+```
+--
+![](infer-sdss_files/figure-html/part9-out-1.png)&lt;!-- --&gt;
+
+---
+
+# Goodness of Fit Test
+
+--
+
+
+
+
+
+```r
+gss %&gt;%
+* specify(party ~ NULL) %&gt;%
+* hypothesize(null = "point",
+*             p = c("Dem" = .33, "Ind" = .34, "Rep" = .33)) %&gt;%
+* generate(reps = 500, type = "simulate") %&gt;%
+  calculate(stat = "Chisq") %&gt;%
+  visualize(obs_stat = chi_obs, direction = "greater")
+```
+--
+![](infer-sdss_files/figure-html/part9b-out-1.png)&lt;!-- --&gt;
+
+---
+
+# Comparing Proportions
+
+--
+
+
+```r
+gss %&gt;%
+* specify(happy ~ cappun, success = "HAPPY") %&gt;%
+  hypothesize(null = "independence") %&gt;%
+  generate(reps = 500, type = "permute") %&gt;%
+* calculate(stat = "diff in props", order = c("FAVOR", "OPPOSE"))
+```
+--
+
+```
+## # A tibble: 500 x 2
+##    replicate     stat
+##        &lt;int&gt;    &lt;dbl&gt;
+##  1         1  0.00458
+##  2         2  0.141  
+##  3         3  0.0319 
+##  4         4 -0.0773 
+##  5         5 -0.0227 
+##  6         6  0.00458
+##  7         7 -0.105  
+##  8         8  0.0592 
+##  9         9  0.0319 
+## 10        10  0.0592 
+## # … with 490 more rows
+```
+
+---
+
+# Comparing Proportions
+
+
+
+
+```r
+gss %&gt;%
+  specify(happy ~ cappun, success = "HAPPY") %&gt;%
+  hypothesize(null = "independence") %&gt;%
+  generate(reps = 500, type = "permute") %&gt;%
+  calculate(stat = "diff in props", order = c("FAVOR", "OPPOSE")) %&gt;%
+* visualize(obs_stat = diff_obs, direction = "both")
+```
+--
+![](infer-sdss_files/figure-html/part11-out-1.png)&lt;!-- --&gt;
+
+---
+
+# Intervals for Proportions
+
+--
+
+
+```r
+gss %&gt;%
+  specify(happy ~ cappun, success = "HAPPY") %&gt;%
+* #hypothesize(null = "independence") %&gt;%
+* generate(reps = 500, type = "bootstrap") %&gt;%
+  calculate(stat = "diff in props", order = c("FAVOR", "OPPOSE")) %&gt;%
+  visualize()
+```
+--
+![](infer-sdss_files/figure-html/part12-out-1.png)&lt;!-- --&gt;
+
+---
+
+# Intervals for Proportions
+
+
+```r
+gss %&gt;%
+  specify(happy ~ cappun, success = "HAPPY") %&gt;%
+  #hypothesize(null = "independence") %&gt;%
+  generate(reps = 500, type = "bootstrap") %&gt;%
+  calculate(stat = "diff in props", order = c("FAVOR", "OPPOSE")) %&gt;%
+* get_confidence_interval(level = 0.95)
+```
+--
+
+```
+## # A tibble: 1 x 2
+##   `2.5%` `97.5%`
+##    &lt;dbl&gt;   &lt;dbl&gt;
+## 1 -0.135   0.142
+```
+
+---
+
+# Agenda 
+
+## I. Cookbook Statistics
+## II. An Alternative to a Cookbook
+## III. Elements of Inference
+## IV. An Alternative to Cookbook Statistics
+
+---
+class: middle
+
+&gt; Think how much more we learn - and retain! - when a teacher doesn't just enumerate the step-by-step instructions but explains the principles behind them. Armed with reasons, we no longer have to cling to a recipe like a lifeboat; now we can strike out on our own and begin to improvise.
+
+Michael Pollan, foreward to *Salt, Fat, Acid, Heat*.
+
+
+---
+
+# Collaborators
+- Chester Ismary
+- Evgeni Chasnovski
+- Mine Cetinkaya-Rundel
+- Ben Baumer
+- Jo Hardin
+
+# References
+- [infer.netlify.com](http://www.infer.netlify.com)
+- Nosrat, S. (2017). *Salt, Fat, Acid, Heat : Mastering the Elements of Good Cooking*. Simon and Schuster, New York, NY.
+- Fisher R.A. (1934). *Statistical Methods for Research Workers*. Fifth Edition. Oliver and Boyd, London, UK.
+- Triola, M. (2014). *Statdisk 12 Student Laboratory Manual and Workbook*. Pearson, New York, NY.
+- Chang, W. (2013). *R Graphics Cookbook*. O'Reilly Media, Sebastopol, CA.
+
+&lt;img src="img/infer_gnome.png" width="150" style="display: block; margin: auto;" /&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "atelier-forest-light",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
